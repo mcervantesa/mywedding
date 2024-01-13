@@ -96,7 +96,8 @@
           "builder": "@angular/fire:deploy",
           "options": {
             "version": 2,
-            "browserTarget": "myWedding:build:production"
+            "browserTarget": "myWedding:build:production",
+            "aot": true
           }
         }
       }

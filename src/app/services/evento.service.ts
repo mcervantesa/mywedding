@@ -10,10 +10,11 @@ export class EventoService {
 
   private itemsCollection: AngularFirestoreCollection<any>;
   constructor(public afs: AngularFirestore) {
-    this.itemsCollection = this.afs.collection('invitados');
+    
    }
 
    getInvitadoCodigo(codigo : string){
+    this.itemsCollection = this.afs.collection('invitados');
     this.itemsCollection = this.afs.collection<any>('invitados',ref => ref.where('codigo','==',codigo));
     return this.itemsCollection.valueChanges({idField: 'id'});
   }

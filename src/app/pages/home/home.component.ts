@@ -31,7 +31,7 @@ export class HomeComponent {
   formConfirmation: FormGroup;
   checking : boolean = false;
 
-  constructor(private service: EventoService, private fb: FormBuilder) {
+  constructor(private service: EventoService, private fb: FormBuilder,) {
     this.myForm = new FormGroup({
       codigo: new FormControl('',Validators.required),
     });
