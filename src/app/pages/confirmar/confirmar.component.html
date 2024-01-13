@@ -1,0 +1,177 @@
+<div>
+
+    <div class="container">
+
+        <div class="row animate-box">
+            <div class="col-md-10 col-md-offset-1">
+                <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+
+
+
+                    <div class="form-group row mb-3"><br>
+                        <label class="col-2 col-form-label">Nombre de la familia</label>
+                        <div class="col-8">
+
+                            <input class="form-control" type="text" placeholder="Familia" formControlName="familia"
+                                [class.is-invalid]="familiaNoValido">
+                            <small class="form-text text-danger" *ngIf="familiaNoValido">Ingrese nombre de familia
+                                valido</small>
+                        </div>
+                    </div>
+
+
+                    <div class="row ">
+                        <div class="col">
+                            <table class="table table-bordered text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Nombre invitado</td>
+                                        <td>Borrar</td>
+                                    </tr>
+                                </thead>
+                                <tbody formArrayName="invitados">
+                                    <tr *ngFor="let control of invitados.controls; let i= index">
+                                        <td>{{ i + 1 }}</td>
+                                        <td> <input type="text" class="form-control" [formControlName]="i"></td>
+                                        <td><button class="btn btn-danger" type="button"
+                                                (click)="borrar(i)">Borrar</button></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+
+                                        <td colspan="3">
+                                            <div class="d-grid gap-2">
+                                                <button class="btn btn-primary" type="button" (click)="agregar()">+
+                                                    Agregar</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">&nbsp;</label>
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-success btn-block" [disabled]="!forma.valid">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="container">
+        <div class="row">
+            
+              
+            <div class="card">
+                <br>
+                <h2>Total invitados : {{totalInvitados}}
+                </h2>
+                <button type="button" class="btn btn-primary">
+                    Asisten <span class="badge badge-light">{{asisten}}</span>
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    No asisten <span class="badge badge-danger">{{noAsisten}}</span>
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Familias confirmadas <span class="badge badge-light">{{confirmados}}</span>
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Familias No confirmadas <span class="badge badge-danger">{{noConfirmados}}</span>
+                  </button>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div>
+<br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Familia</th>
+                            <th>Integrantes</th>
+                            <th>Mensaje</th>
+                            <th>Guardo confirmacion</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listaInvitados">
+                            <td>{{ item.codigo}}</td>
+                            <td>{{ item.familia}}</td>
+                            <td>
+                                <table class="table">
+                                    <tbody>
+                                        <tr *ngFor="let it of item.integrantes">
+                                            <td>{{it.nombre}}</td>
+                                            <td *ngIf="it.confirmar"><i class="fa-solid fa-check"></i></td>
+                                            <td *ngIf="!it.confirmar"><i class="fa-solid fa-ban"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                            <td>
+                                {{item.mensaje}}
+                            </td>
+                            <td *ngIf="item.confirmar">Si</td>
+                            <td *ngIf="!item.confirmar">No</td>
+                            <td><button class="btn btn-danger" type="button" (click)="selected(item)"
+                                    data-toggle="modal" data-target="#exampleModal"><i
+                                        class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br><br>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" *ngIf="itemSelected">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Borrar invitado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{itemSelected.familia}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" (click)="borrarInvitado()">Borrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<hr>
+<hr>
+<pre>
+Estado del formulario: {{ forma.valid}}
+<pre>
+Status: {{ forma.status}}
+<pre>
+{{ forma.value | json}}
+<pre>
+</pre> -->

@@ -1,0 +1,16 @@
+.btnConfirmar{
+    height: 54px;
+    border: none !important;
+    background: #E2B25F;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 25px;
+}
+
+.table{
+    padding-top: 15px !important;
+}

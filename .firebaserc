@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mywedding-bba04": {
+      "hosting": {
+        "myWedding": [
+          "mywedding-bba04"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mywedding-bba04"
+  }
+}
