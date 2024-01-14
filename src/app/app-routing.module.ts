@@ -5,14 +5,14 @@ import { ConfirmarComponent } from './pages/confirmar/confirmar.component';
 
 const routes: Routes = [
    {
-    path: 'invitation',
+    path: '',
     component: HomeComponent,
   },
   {
     path: 'confirmar',
     component: ConfirmarComponent,
   },
-  { path: '**', redirectTo: 'invitation' }
+  //{ path: '**', redirectTo: 'invitation' }
 ];
 
 @NgModule({
